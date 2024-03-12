@@ -4,8 +4,6 @@ import com.invman.inventory.model.hr.Employee;
 import com.invman.inventory.model.hr.Provider;
 import com.invman.inventory.model.hr.Seller;
 import com.invman.inventory.service.EmployeeService;
-import jakarta.persistence.PostUpdate;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

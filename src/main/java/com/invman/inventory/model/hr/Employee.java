@@ -4,13 +4,14 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
 
-@Entity
-@Inheritance (strategy = InheritanceType.JOINED)
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
-@JsonSubTypes({
-        @JsonSubTypes.Type(value = Seller.class, name = "seller"),
-        @JsonSubTypes.Type(value = Provider.class, name = "provider")
-})
+//@Entity
+//@Inheritance (strategy = InheritanceType.JOINED)
+//@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
+//@JsonSubTypes({
+//        @JsonSubTypes.Type(value = Seller.class, name = "seller"),
+//        @JsonSubTypes.Type(value = Provider.class, name = "provider")
+//})
+@MappedSuperclass
 public abstract class Employee {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
