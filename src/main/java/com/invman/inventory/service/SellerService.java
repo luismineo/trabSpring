@@ -8,14 +8,16 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SellerService {
+public class SellerService implements CrudInterface<Seller>{
     @Autowired
     SellerRepository sellerRepository;
 
+    @Override
     public Seller create(Seller seller) {
         return sellerRepository.save(seller);
     }
 
+    @Override
     public Seller update(Seller seller, Long id) {
         if(verify(id)){
             seller.setID(id);
@@ -24,10 +26,12 @@ public class SellerService {
         return null;
     }
 
+    @Override
     public List<Seller> listAll() {
         return sellerRepository.findAll();
     }
 
+    @Override
     public boolean verify(Long id) {
         return sellerRepository.existsById(id);
     }

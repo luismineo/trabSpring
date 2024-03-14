@@ -13,29 +13,17 @@ import jakarta.persistence.*;
 //})
 @MappedSuperclass
 public abstract class Employee {
-    @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private long ID;
     private String name;
     private String email;
     private float salary;
 
-    public Employee(long ID, String name, String email, float salary) {
-        this.ID = ID;
+    public Employee(String name, String email, float salary) {
         this.name = name;
         this.email = email;
         this.salary = salary;
     }
 
     public Employee() {
-    }
-
-    public long getID() {
-        return ID;
-    }
-
-    public void setID(long ID) {
-        this.ID = ID;
     }
 
     public String getName() {

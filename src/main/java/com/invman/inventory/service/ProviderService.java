@@ -8,14 +8,16 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ProviderService {
+public class ProviderService implements CrudInterface<Provider>{
     @Autowired
     ProviderRepository providerRepository;
 
+    @Override
     public Provider create(Provider provider) {
         return providerRepository.save(provider);
     }
 
+    @Override
     public Provider update(Provider provider, Long id) {
         if(verify(id)){
             provider.setID(id);
@@ -24,10 +26,12 @@ public class ProviderService {
         return null;
     }
 
+    @Override
     public List<Provider> listAll() {
         return providerRepository.findAll();
     }
 
+    @Override
     public boolean verify(Long id) {
         return providerRepository.existsById(id);
     }
