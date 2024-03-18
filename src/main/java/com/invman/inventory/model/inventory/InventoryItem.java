@@ -2,32 +2,21 @@ package com.invman.inventory.model.inventory;
 
 import jakarta.persistence.*;
 
-@Entity
-@Inheritance (strategy = InheritanceType.JOINED)
+//@Entity
+//@Inheritance (strategy = InheritanceType.JOINED)
+@MappedSuperclass
 public abstract class InventoryItem {
-    @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private long ID;
     private String name;
     private String description;
     private double price;
 
-    public InventoryItem(long ID, String name, String description, double price) {
-        this.ID = ID;
+    public InventoryItem(String name, String description, double price) {
         this.name = name;
         this.description = description;
         this.price = price;
     }
 
     public InventoryItem() {
-    }
-
-    public long getID() {
-        return ID;
-    }
-
-    public void setID(long ID) {
-        this.ID = ID;
     }
 
     public String getName() {

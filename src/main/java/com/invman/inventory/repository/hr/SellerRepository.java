@@ -1,4 +1,4 @@
-package com.invman.inventory.repository;
+package com.invman.inventory.repository.hr;
 
 import com.invman.inventory.model.hr.Seller;
 import org.springframework.data.jpa.repository.JpaRepository;

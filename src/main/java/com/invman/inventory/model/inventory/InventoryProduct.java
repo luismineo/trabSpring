@@ -4,10 +4,15 @@ import jakarta.persistence.*;
 
 @Entity
 public class InventoryProduct extends InventoryItem{
+
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    private long ID;
     private Integer quantityInStock;
 
-    public InventoryProduct(long ID, String name, String description, double price, Integer quantityInStock) {
-        super(ID, name, description, price);
+    public InventoryProduct(String name, String description, double price, long ID, Integer quantityInStock) {
+        super(name, description, price);
+        this.ID = ID;
         this.quantityInStock = quantityInStock;
     }
 
@@ -17,6 +22,14 @@ public class InventoryProduct extends InventoryItem{
 
     public InventoryProduct() {
 
+    }
+
+    public long getID() {
+        return ID;
+    }
+
+    public void setID(long ID) {
+        this.ID = ID;
     }
 
     public int getQuantityInStock() {

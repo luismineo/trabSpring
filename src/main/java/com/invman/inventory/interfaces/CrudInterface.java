@@ -1,4 +1,4 @@
-package com.invman.inventory.service;
+package com.invman.inventory.interfaces;
 
 import com.invman.inventory.model.hr.Employee;
 import com.invman.inventory.model.hr.Seller;

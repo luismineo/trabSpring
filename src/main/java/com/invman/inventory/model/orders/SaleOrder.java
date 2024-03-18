@@ -68,4 +68,8 @@ public class SaleOrder {
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
     }
+
+    public Long getProductId(){
+        return product.getID();
+    }
 }

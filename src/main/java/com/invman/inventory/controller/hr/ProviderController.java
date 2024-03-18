@@ -1,7 +1,7 @@
 package com.invman.inventory.controller.hr;
 
 import com.invman.inventory.model.hr.Provider;
-import com.invman.inventory.service.ProviderService;
+import com.invman.inventory.service.hr.ProviderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/api/employees/providers")
+@RequestMapping("/employees/providers")
 public class ProviderController {
     @Autowired
     ProviderService providerService;

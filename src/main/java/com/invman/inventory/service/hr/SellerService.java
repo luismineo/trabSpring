@@ -1,14 +1,15 @@
-package com.invman.inventory.service;
+package com.invman.inventory.service.hr;
 
 import com.invman.inventory.model.hr.Seller;
-import com.invman.inventory.repository.SellerRepository;
+import com.invman.inventory.repository.hr.SellerRepository;
+import com.invman.inventory.interfaces.CrudInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class SellerService implements CrudInterface<Seller>{
+public class SellerService implements CrudInterface<Seller> {
     @Autowired
     SellerRepository sellerRepository;
 
