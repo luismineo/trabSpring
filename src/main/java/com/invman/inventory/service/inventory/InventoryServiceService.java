@@ -1,6 +1,6 @@
 package com.invman.inventory.service.inventory;
 
-import com.invman.inventory.interfaces.CrudInterface;
+import com.invman.inventory.interfaces.InventoryInterface;
 import com.invman.inventory.model.inventory.InventoryService;
 import com.invman.inventory.repository.inventory.InventoryServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class InventoryServiceService implements CrudInterface<InventoryService> {
+public class InventoryServiceService implements InventoryInterface<InventoryService> {
     @Autowired
     InventoryServiceRepository inventoryServiceRepository;
 
@@ -35,5 +35,10 @@ public class InventoryServiceService implements CrudInterface<InventoryService> 
     @Override
     public boolean verify(Long id) {
         return inventoryServiceRepository.existsById(id);
+    }
+
+    @Override
+    public boolean delete(Long id) {
+        return false;
     }
 }

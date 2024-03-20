@@ -28,4 +28,14 @@ public class SellerController {
     public ResponseEntity<?> updateSeller(@RequestBody Seller seller, @PathVariable Long id){
         return new ResponseEntity<>(sellerService.update(seller, id), HttpStatus.OK);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        if (sellerService.delete(id)){
+            String message = "Successfully deleted";
+            return ResponseEntity.status(HttpStatus.OK).body(message);
+        }
+        String message = "Not FOUND";
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+    }
 }

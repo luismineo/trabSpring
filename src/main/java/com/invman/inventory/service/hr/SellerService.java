@@ -2,14 +2,14 @@ package com.invman.inventory.service.hr;
 
 import com.invman.inventory.model.hr.Seller;
 import com.invman.inventory.repository.hr.SellerRepository;
-import com.invman.inventory.interfaces.CrudInterface;
+import com.invman.inventory.interfaces.EmployeesInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class SellerService implements CrudInterface<Seller> {
+public class SellerService implements EmployeesInterface<Seller> {
     @Autowired
     SellerRepository sellerRepository;
 
@@ -35,5 +35,14 @@ public class SellerService implements CrudInterface<Seller> {
     @Override
     public boolean verify(Long id) {
         return sellerRepository.existsById(id);
+    }
+
+    @Override
+    public boolean delete(Long id) {
+        if(verify(id)){
+            sellerRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }

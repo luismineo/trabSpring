@@ -1,6 +1,6 @@
 package com.invman.inventory.service.orders;
 
-import com.invman.inventory.interfaces.CrudInterface;
+import com.invman.inventory.interfaces.OrdersInterface;
 import com.invman.inventory.model.orders.SaleOrder;
 import com.invman.inventory.repository.orders.SaleOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SaleOrderService implements CrudInterface<SaleOrder> {
+public class SaleOrderService implements OrdersInterface<SaleOrder> {
     @Autowired
     SaleOrderRepository saleOrderRepository;
 
@@ -37,6 +37,11 @@ public class SaleOrderService implements CrudInterface<SaleOrder> {
     @Override
     public boolean verify(Long id) {
         return saleOrderRepository.existsById(id);
+    }
+
+    @Override
+    public boolean delete(Long id) {
+        return false;
     }
 
 }

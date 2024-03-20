@@ -6,7 +6,7 @@ import com.invman.inventory.model.inventory.InventoryProduct;
 import jakarta.persistence.*;
 
 @Entity
-public class SaleOrder extends BaseModel {
+public class SaleOrder extends BaseOrder {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long id;
