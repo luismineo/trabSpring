@@ -37,7 +37,4 @@ public class InventoryProductService implements CrudInterface<InventoryProduct> 
         return inventoryProductRepository.existsById(id);
     }
 
-    public InventoryProduct getProduct(Long id){
-        return inventoryProductRepository.findById(id).orElse(null);
-    }
 }

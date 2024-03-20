@@ -1,11 +1,12 @@
 package com.invman.inventory.model.orders;
 
+import com.invman.inventory.model.BaseModel;
 import com.invman.inventory.model.hr.Provider;
 import com.invman.inventory.model.inventory.InventoryService;
 import jakarta.persistence.*;
 
 @Entity
-public class WorkOrder {
+public class WorkOrder extends BaseModel {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long id;

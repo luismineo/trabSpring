@@ -2,6 +2,7 @@ package com.invman.inventory.model.hr;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.invman.inventory.model.BaseModel;
 import jakarta.persistence.*;
 
 //@Entity
@@ -12,7 +13,7 @@ import jakarta.persistence.*;
 //        @JsonSubTypes.Type(value = Provider.class, name = "provider")
 //})
 @MappedSuperclass
-public abstract class Employee {
+public abstract class Employee extends BaseModel {
     private String name;
     private String email;
     private float salary;

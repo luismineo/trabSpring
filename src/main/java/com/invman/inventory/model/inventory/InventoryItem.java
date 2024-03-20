@@ -1,11 +1,12 @@
 package com.invman.inventory.model.inventory;
 
+import com.invman.inventory.model.BaseModel;
 import jakarta.persistence.*;
 
 //@Entity
 //@Inheritance (strategy = InheritanceType.JOINED)
 @MappedSuperclass
-public abstract class InventoryItem {
+public abstract class InventoryItem extends BaseModel {
     private String name;
     private String description;
     private double price;

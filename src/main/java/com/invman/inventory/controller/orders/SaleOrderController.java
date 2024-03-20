@@ -1,7 +1,6 @@
 package com.invman.inventory.controller.orders;
 
 import com.invman.inventory.model.orders.SaleOrder;
-import com.invman.inventory.service.inventory.InventoryProductService;
 import com.invman.inventory.service.orders.SaleOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,5 +21,10 @@ public class SaleOrderController {
     @PostMapping
     public ResponseEntity<?> newSaleOrder(@RequestBody SaleOrder saleOrder){
         return ResponseEntity.ok(saleOrderService.create(saleOrder));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<SaleOrder> updateOrder(@RequestBody SaleOrder saleOrder, @PathVariable Long id){
+        return ResponseEntity.ok(saleOrderService.update(saleOrder, id));
     }
 }

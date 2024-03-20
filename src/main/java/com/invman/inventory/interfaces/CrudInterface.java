@@ -1,11 +1,10 @@
 package com.invman.inventory.interfaces;
 
-import com.invman.inventory.model.hr.Employee;
-import com.invman.inventory.model.hr.Seller;
+import com.invman.inventory.model.BaseModel;
 
 import java.util.List;
 
-public interface CrudInterface <T> {
+public interface CrudInterface <T extends BaseModel> {
     T create(T t);
     T update(T t, Long id);
 
