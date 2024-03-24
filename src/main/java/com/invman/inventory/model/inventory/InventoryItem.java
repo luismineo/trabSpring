@@ -1,14 +1,20 @@
 package com.invman.inventory.model.inventory;
 
-import com.invman.inventory.model.BaseModel;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 
 //@Entity
 //@Inheritance (strategy = InheritanceType.JOINED)
 @MappedSuperclass
-public abstract class InventoryItem extends BaseModel {
+public abstract class InventoryItem {
+    @NotNull
+    @Column(nullable = false)
     private String name;
     private String description;
+    @NotNull
+    @Column(nullable = false)
+    @Min(1)
     private double price;
 
     public InventoryItem(String name, String description, double price) {

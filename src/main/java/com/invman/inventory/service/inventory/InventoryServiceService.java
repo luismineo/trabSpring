@@ -39,6 +39,10 @@ public class InventoryServiceService implements InventoryInterface<InventoryServ
 
     @Override
     public boolean delete(Long id) {
+        if(verify(id)){
+            inventoryServiceRepository.deleteById(id);
+            return true;
+        }
         return false;
     }
 }

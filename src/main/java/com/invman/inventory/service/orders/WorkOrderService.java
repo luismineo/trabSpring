@@ -15,7 +15,9 @@ public class WorkOrderService implements OrdersInterface<WorkOrder> {
 
     @Override
     public WorkOrder create(WorkOrder workOrder) {
+        //Calcula o preço total
         workOrder.setTotalPrice((workOrder.getService().getPrice()) * (workOrder.getHoursWorked()));
+
         return workOrderRepository.save(workOrder);
     }
 
@@ -40,6 +42,10 @@ public class WorkOrderService implements OrdersInterface<WorkOrder> {
 
     @Override
     public boolean delete(Long id) {
+        if(verify(id)){
+            workOrderRepository.deleteById(id);
+            return true;
+        }
         return false;
     }
 }

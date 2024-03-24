@@ -1,9 +1,9 @@
 package com.invman.inventory.model.orders;
 
-import com.invman.inventory.model.BaseModel;
 import com.invman.inventory.model.hr.Provider;
 import com.invman.inventory.model.inventory.InventoryService;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class WorkOrder extends BaseOrder {
@@ -16,15 +16,25 @@ public class WorkOrder extends BaseOrder {
     @ManyToOne
     @JoinColumn(name = "provider_id")
     private Provider provider;
+    @NotNull
+    @Column(nullable = false)
     private float hoursWorked;
     private double totalPrice;
 
-    public WorkOrder(long id, InventoryService service, Provider provider, float hoursWorked, double totalPrice) {
+    public enum Status {
+        IN_PROGRESS,
+        COMPLETED
+    }
+
+    private Status status;
+
+    public WorkOrder(long id, InventoryService service, Provider provider, float hoursWorked, double totalPrice,Status status) {
         this.id = id;
         this.service = service;
         this.provider = provider;
         this.hoursWorked = hoursWorked;
         this.totalPrice = totalPrice;
+        this.status = status;
     }
 
     public WorkOrder() {
@@ -68,5 +78,13 @@ public class WorkOrder extends BaseOrder {
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

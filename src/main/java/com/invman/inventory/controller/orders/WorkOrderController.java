@@ -2,7 +2,9 @@ package com.invman.inventory.controller.orders;
 
 import com.invman.inventory.model.orders.WorkOrder;
 import com.invman.inventory.service.orders.WorkOrderService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -21,13 +23,26 @@ public class WorkOrderController {
     }
 
     @PostMapping
-    public ResponseEntity<WorkOrder> saveOrder(@RequestBody WorkOrder workOrder){
-        return ResponseEntity.ok(workOrderService.create(workOrder));
+    public ResponseEntity<?> saveOrder(@Valid @RequestBody WorkOrder workOrder){
+        workOrderService.create(workOrder);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Item successfully registered");
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<WorkOrder> updateOrder(@RequestBody WorkOrder workOrder, @PathVariable Long id){
-        return ResponseEntity.ok(workOrderService.update(workOrder, id));
+    public ResponseEntity<?> updateOrder(@Valid @RequestBody WorkOrder workOrder, @PathVariable Long id){
+        if(!workOrderService.verify(id)){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("ID Not Found");
+        }
+        workOrderService.update(workOrder, id);
+        return ResponseEntity.status(HttpStatus.OK).body("Successfully updated");
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteProduct(@PathVariable Long id){
+        if(workOrderService.delete(id)){
+            return ResponseEntity.status(HttpStatus.OK).body("Successfully deleted");
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("ID Not Found");
     }
 }
 

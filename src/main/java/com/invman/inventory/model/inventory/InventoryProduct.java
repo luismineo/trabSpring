@@ -1,6 +1,8 @@
 package com.invman.inventory.model.inventory;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class InventoryProduct extends InventoryItem{
@@ -8,7 +10,10 @@ public class InventoryProduct extends InventoryItem{
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long ID;
-    private Integer quantityInStock;
+    @NotNull
+    @Column(nullable = false)
+    @Min(0)
+    private Integer quantityInStock = 0;
 
     public InventoryProduct(String name, String description, double price, long ID, Integer quantityInStock) {
         super(name, description, price);

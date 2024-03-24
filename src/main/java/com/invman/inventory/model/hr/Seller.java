@@ -1,15 +1,17 @@
 package com.invman.inventory.model.hr;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Seller extends Employee{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long ID;
+    @NotNull
+    @Column(nullable = false)
+    @Max(1)
     private float commission;
 
     public Seller(String name, String email, float salary, long ID, float commission) {

@@ -2,6 +2,7 @@ package com.invman.inventory.controller.hr;
 
 import com.invman.inventory.model.hr.Seller;
 import com.invman.inventory.service.hr.SellerService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,26 +17,29 @@ public class SellerController {
 
     @GetMapping
     public ResponseEntity<?> listAllSellers(){
-        return new ResponseEntity<>(sellerService.listAll(), HttpStatus.OK);
+        return ResponseEntity.ok(sellerService.listAll());
     }
 
     @PostMapping
-    public ResponseEntity<?> createSeller(@RequestBody Seller seller){
-        return new ResponseEntity<>(sellerService.create(seller), HttpStatus.CREATED);
+    public ResponseEntity<?> createSeller(@Valid @RequestBody Seller seller){
+        sellerService.create(seller);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Employee successfully registered");
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateSeller(@RequestBody Seller seller, @PathVariable Long id){
-        return new ResponseEntity<>(sellerService.update(seller, id), HttpStatus.OK);
+    public ResponseEntity<?> updateSeller(@Valid @RequestBody Seller seller, @PathVariable Long id){
+        if(!sellerService.verify(id)){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("ID Not Found");
+        }
+        sellerService.update(seller, id);
+        return ResponseEntity.status(HttpStatus.OK).body("Successfully updated");
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id){
         if (sellerService.delete(id)){
-            String message = "Successfully deleted";
-            return ResponseEntity.status(HttpStatus.OK).body(message);
+            return ResponseEntity.status(HttpStatus.OK).body("Successfully deleted");
         }
-        String message = "Not FOUND";
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("ID Not Found");
     }
 }

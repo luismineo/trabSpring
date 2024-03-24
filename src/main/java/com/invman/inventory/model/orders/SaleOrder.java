@@ -1,9 +1,10 @@
 package com.invman.inventory.model.orders;
 
-import com.invman.inventory.model.BaseModel;
 import com.invman.inventory.model.hr.Seller;
 import com.invman.inventory.model.inventory.InventoryProduct;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class SaleOrder extends BaseOrder {
@@ -16,6 +17,9 @@ public class SaleOrder extends BaseOrder {
     @ManyToOne
     @JoinColumn(name = "seller_id")
     private Seller seller;
+    @NotNull
+    @Column(nullable = false)
+    @Min(1)
     private int quantitySold;
     private double totalPrice;
 

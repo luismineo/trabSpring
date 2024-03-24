@@ -1,15 +1,15 @@
 package com.invman.inventory.model.inventory;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class InventoryService extends InventoryItem{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long ID;
+    @NotNull
+    @Column(nullable = false)
     private float estimatedHours;
 
     public InventoryService(String name, String description, double price, long ID, float estimatedHours) {
