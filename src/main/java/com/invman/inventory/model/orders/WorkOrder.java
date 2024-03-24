@@ -18,7 +18,7 @@ public class WorkOrder extends BaseOrder {
     private Provider provider;
     @NotNull
     @Column(nullable = false)
-    private float hoursWorked;
+    private float hoursWorked = 0;
     private double totalPrice;
 
     public enum Status {
@@ -26,7 +26,7 @@ public class WorkOrder extends BaseOrder {
         COMPLETED
     }
 
-    private Status status;
+    private Status status = Status.IN_PROGRESS; //Inicializa como IN_PROGRESS
 
     public WorkOrder(long id, InventoryService service, Provider provider, float hoursWorked, double totalPrice,Status status) {
         this.id = id;

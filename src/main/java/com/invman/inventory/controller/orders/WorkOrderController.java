@@ -37,6 +37,15 @@ public class WorkOrderController {
         return ResponseEntity.status(HttpStatus.OK).body("Successfully updated");
     }
 
+    @PutMapping("/finalize/{id}")
+    public ResponseEntity<?> finalizeWorkOrder(@PathVariable Long id, @RequestParam float hoursWorked){
+        if(!workOrderService.verify(id)){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("ID Not Found");
+        }
+        workOrderService.finalizeWorkOrder(id, hoursWorked);
+        return ResponseEntity.status(HttpStatus.OK).body("Successfully finalized");
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteProduct(@PathVariable Long id){
         if(workOrderService.delete(id)){
